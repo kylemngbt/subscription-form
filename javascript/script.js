@@ -5,6 +5,12 @@ const msg = document.querySelector("#msg");
 form.addEventListener('submit', e => {
   e.preventDefault()
   fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    .then(response => console.log('Success!', response))
+    .then(response => {
+      msg.textContent = "Thank you for subscribing!";
+      setTimeout(function() {
+        msg.textContent = "";
+      }, 5000);
+      form.reset();
+    })
     .catch(error => console.error('Error!', error.message))
 })
